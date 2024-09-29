@@ -1,0 +1,260 @@
+--------product------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num1, num2, num3, num4, prod;
+
+            Console.Write("Enter number 1: ");
+            num1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number 2: ");
+            num2 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number 3: ");
+            num3 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number 4: ");
+            num4 = Convert.ToInt32(Console.ReadLine());
+
+            prod = num1 * num2 * num3 * num4;
+
+            Console.WriteLine(num1 + " * " + num2 + " * " + num3 + " * " + num4 + " = " + prod);
+            Console.ReadKey();
+        }
+    }
+}
+
+
+--------string--------
+using System;
+
+namespace cmdLineArgs
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Please provide both a string and a number as command-line arguments.");
+                return;
+            }
+
+            string str = args[0];
+
+            int n;
+            if (int.TryParse(args[1], out n))
+            {
+                Console.WriteLine("String: " + str);
+                Console.WriteLine("Number: " + n);
+            }
+            else
+            {
+                Console.WriteLine("The second argument is not a valid number.");
+            }
+        }
+    }
+}
+
+
+
+-----Student Set------
+using System;
+
+namespace ArrayOfStructs
+{
+    class Program
+    {
+        struct Student
+        {
+            public string studid, name, cname;
+            public int day, month, year;
+        }
+
+        static void Main(string[] args)
+        {
+            Student[] students = new Student[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Enter Student Id: ");
+                students[i].studid = Console.ReadLine();
+                
+                Console.Write("Enter Student Name: ");
+                students[i].name = Console.ReadLine();
+                
+                Console.Write("Enter Course Name: ");
+                students[i].cname = Console.ReadLine();
+                
+                Console.Write("Enter Date of Birth\nDay (1-31): ");
+                students[i].day = Convert.ToInt32(Console.ReadLine());
+                
+                Console.Write("Enter Month (1-12): ");
+                students[i].month = Convert.ToInt32(Console.ReadLine());
+                
+                Console.Write("Enter Year: ");
+                students[i].year = Convert.ToInt32(Console.ReadLine());
+            }
+
+            Console.WriteLine("\n\nStudent's List\n");
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("\nStudent ID: " + students[i].studid);
+                Console.WriteLine("Student Name: " + students[i].name);
+                Console.WriteLine("Course Name: " + students[i].cname);
+                Console.WriteLine("Date of Birth (dd-mm-yyyy): " + students[i].day + "-" + students[i].month + "-" + students[i].year);
+            }
+        }
+    }
+}
+
+
+------Fibonacci-----
+using System;
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num1 = 0, num2 = 1, num3, num4, num, counter;
+            Console.Write("Upto how many number you want fibonacciseries:");
+            num = int.Parse(Console.ReadLine());
+            counter = 3;
+            Console.Write(num1 + "\t" + num2);
+            while (counter <= num)
+            {
+                num3 = num1 + num2;
+                if (counter >= num)
+                    break;
+                Console.Write("\t" + num3);
+                num1 = num2;
+                num2 = num3;
+                counter++;
+            }
+        }
+    }
+}
+
+
+
+------Prime------
+using System;
+namespace TestPrime
+{
+    class Program
+    {
+        static void Main(string[] args){
+            int num, counter, result;
+            Console.WriteLine("Enter Number:");
+            num = int.Parse(Console.ReadLine());
+            if (num == 1){
+                Console.WriteLine(num + " is neither prime nor composite");
+            }
+            else{
+                result = 0;
+                for (counter = 2; counter < num; counter++){
+                    if (num % counter == 0){
+                        result = 0;
+                        break; 
+                    }
+                }
+                if (result == 0){
+                    Console.WriteLine(num + " is not a prime number.");
+                }
+                else{
+                    Console.WriteLine(num + " is a prime number.");
+                }
+            }
+        }
+    }
+}
+
+
+
+------vowel------
+using System;
+namespace vowels
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char ch;
+            Console.Write("Enter a character: ");
+            ch = (char)Console.Read();
+            switch (ch)
+            {
+                case 'a':
+                case 'A':
+                case 'e':
+                case 'E':
+                case 'i':
+                case 'I':
+                case 'o':
+                case 'O':
+                case 'u':
+                case 'U':
+                    Console.WriteLine("The characteris a vowel.");
+                    break;
+                default:
+                    Console.WriteLine("The characteris not a vowel.");
+                    break;
+            }
+        }
+    }
+}
+
+
+
+
+-----foreach loop-------
+using System;
+class ExampleForEach
+{
+    public static void Main()
+    {
+        string[] str = { "shield", "Evaluation", "DX" };
+        foreach (String s in str)
+        {
+            Console.WriteLine(s);
+        }
+    }
+}
+
+
+
+-------Reverse and Digit-----
+using System;
+namespace reverseNumber
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num, actualnumber, revnum = 0, digit, sumDigits = 0;
+            Console.WriteLine("Enter number:");
+            num = int.Parse(Console.ReadLine());
+            actualnumber = num;
+            while (num > 0)
+            {
+                digit = num % 10;
+                revnum = (revnum * 10) + digit;
+                sumDigits = sumDigits + digit;
+                num = num / 10;
+            }
+            Console.WriteLine("Reversed number: " + revnum);
+            Console.WriteLine("Sum of digits: " + sumDigits);
+        }
+    }
+}
+
+
