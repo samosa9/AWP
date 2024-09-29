@@ -258,3 +258,145 @@ namespace reverseNumber
 }
 
 
+--------factorial--------
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace factorial
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i, number, fact;
+            Console.WriteLine("Enter the Number");
+            number = int.Parse(Console.ReadLine());
+            fact = number;
+            for (i = number - 1; i >= 1; i--)
+            {
+                fact = fact * i;
+            }
+            Console.WriteLine("\nFactorial of Given Numberis: " + fact);
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+------------money conversion---------
+using System;
+namespace CurrencyConversion
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int choice;
+            Console.WriteLine("Enter your choice:\n1 - Dollarto Rupee\n2 - Euro to Rupee\n3 -Malaysian Ringgit to Rupee");
+        if (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 3)
+            {
+                Console.WriteLine("Invalid choice. Please select a valid option (1, 2, or 3).");
+                return;
+            }
+            switch (choice)
+            {
+                case 1:
+                    ConvertCurrency("Dollar", "Rupee");
+                    break;
+                case 2:
+                    ConvertCurrency("Euro", "Rupee");
+                    break;
+                case 3:
+                    ConvertCurrency("Malaysian Ringgit", "Rupee");
+                    break;
+                default:
+                    Console.WriteLine("Unexpected error. Please select a valid option.");
+                    break;
+            }
+            Console.ReadLine();
+        }
+        static void ConvertCurrency(string fromCurrency, string toCurrency)
+        {
+            double amount, value, convertedAmount;
+            Console.WriteLine($"Enter the amount in {fromCurrency}: ");
+            if (!double.TryParse(Console.ReadLine(), out amount) || amount < 0)
+            {
+                Console.WriteLine("Invalid amount. Please enter a positive number.");
+                return;
+            }
+            Console.WriteLine($"Enterthe {fromCurrency} to {toCurrency} conversion rate: ");
+            if (!double.TryParse(Console.ReadLine(), out value) || value <= 0)
+            {
+                Console.WriteLine("Invalid conversion rate. Please enter a positive number.");
+                return;
+            }
+            convertedAmount = amount * value;
+            Console.WriteLine($"{amount} {fromCurrency} equals {convertedAmount} {toCurrency}");
+        }
+    }
+}
+
+
+
+-------------Temperature conversion---------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace temperatureconversion
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int celsius, faren;
+            Console.WriteLine("Enterthe Temperature in Celsius(°C) : ");
+            celsius = int.Parse(Console.ReadLine());
+            faren = (celsius * 9) / 5 + 32;
+            Console.WriteLine("Temperature in Fahrenheit is(°F) : " + faren);
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+------------Function overloading-----------
+using System;
+namespace swap
+{
+    class Overloading
+    {
+        public void swap(ref int n, ref int m)
+        {
+            int t;
+            t = n;
+            n = m;
+            m = t;
+        }
+        public void swap(ref float f1, ref float f2)
+        {
+            float f;
+            f = f1;
+            f1 = f2;
+            f2 = f;
+        }
+    }
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Overloading objOverloading = new Overloading();
+            int n = 10, m = 20;
+            objOverloading.swap(ref n, ref m);
+            Console.WriteLine("N=" + n + "\tM=" + m);
+            float f1 = 10.5f, f2 = 20.6f;
+            objOverloading.swap(ref f1, ref f2);
+            Console.WriteLine("F1=" + f1 + "\tF2=" + f2);
+        }
+    }
+}
+
+
