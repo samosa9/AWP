@@ -1,0 +1,424 @@
+--------------single in
+
+furniture.cs**
+using System;
+namespace SingleInheritance
+{
+    class Furniture
+    {
+        string material;
+        float price;
+        public void getdata()
+        {
+            Console.Write("Enter material : ");
+            material = Console.ReadLine();
+            Console.Write("Enter price : ");
+            price = float.Parse(Console.ReadLine());
+        }
+        public void showdata()
+        {
+            Console.WriteLine("Material : " + material);
+            Console.WriteLine("Price : " + price);
+        }
+    }
+}
+
+program.cs**
+using System;
+namespace SingleInheritance
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Table t1 = new Table();
+            t1.getdata();
+            t1.showdata();
+        }
+    }
+}
+
+table.cs**
+using System;
+namespace SingleInheritance
+{
+    class Table : Furniture
+    {
+        int height, surface_area;
+        public void getdata()
+        {
+            base.getdata();
+            Console.Write("Enter height: ");
+            height = int.Parse(Console.ReadLine());
+            Console.Write("Enter surface area: ");
+            surface_area = int.Parse(Console.ReadLine());
+        }
+        public void showdata()
+        {
+            base.showdata();
+            Console.WriteLine("Height : " + height);
+            Console.WriteLine("Surface Area : " + surface_area);
+        }
+    }
+}
+
+
+-------------Multiple
+
+employee.cs**
+using System;
+namespace MultipleInheritance
+{
+    class Employee
+    {
+        string name;
+        public Employee(string name)
+        { this.name = name; }
+        public int BasicSal(int basicSal)
+        { return basicSal; }
+        public void ShowData()
+        {
+            Console.WriteLine("Name : " + name);
+        }
+    }
+}
+
+program.cs**
+using System;
+namespace MultipleInheritance
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Salary s = new Salary("Radhika", 35000);
+            s.da = 20000;
+            s.ta = 30000;
+            s.dispSal();
+        }
+    }
+}
+
+
+gross.cs**
+using System;
+namespace MultipleInheritance
+{
+    interface Gross
+    {
+        int ta
+        {
+            get;
+            set;
+        }
+        int da
+        {
+            get;
+            set;
+        }
+        int GrossSal();
+    }
+}
+
+salary.cs**
+using System;
+namespace MultipleInheritance
+{
+    class Salary : Employee, Gross
+    {
+        int hra;
+        public Salary(string name, int hra) : base(name)
+        { this.hra = hra; }
+        public int ta
+        {
+            get { return S_ta; }
+            set { S_ta = value; }
+        }
+        private int S_ta;
+        public int da
+        {
+            get { return S_da; }
+            set { S_da = value; }
+        }
+        private int S_da;
+        public int GrossSal()
+        {
+            int gSal;
+            gSal = hra + ta + da + BasicSal(15000);
+            return gSal;
+        }
+        public void dispSal()
+        {
+            base.ShowData();
+            Console.WriteLine("Gross Sal : " + GrossSal());
+        }
+    }
+}
+
+
+
+------------Hirearichal
+
+program.cs**
+using System;
+namespace HeirarchicalInheritance
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Programmer objProgrammer;
+            Manager objManager;
+            Console.Write("Whose details you want to use to see \n1.Programmer\n2.Manager");
+            int choice = int.Parse(Console.ReadLine());
+            if (choice == 1)
+            {
+                objProgrammer = new Programmer();
+                objProgrammer.display();
+            }
+            else if (choice == 2)
+            {
+                objManager = new Manager();
+                objManager.display();
+            }
+            else
+            {
+                Console.WriteLine("Wrong choice entered");
+            }
+        }
+    }
+}
+
+Programmer.cs**
+using System;
+namespace HeirarchicalInheritance
+{
+    class Programmer : employee
+    {
+        public void display()
+        {
+            Console.WriteLine(" Display of Programmer class called ");
+        }
+    }
+}
+
+Employee.cs**
+using System;
+namespace HeirarchicalInheritance
+{
+    class employee
+    {
+        public virtual void display()
+        {
+            Console.WriteLine("Display of employee class called ");
+        }
+    }
+}
+
+Manager.cs**
+using System;
+namespace HeirarchicalInheritance
+{
+    class Manager
+    {
+        public void display()
+        {
+            Console.WriteLine("Display of manager class called ");
+        }
+    }
+}
+
+
+---------Multilevel
+
+program.cs***
+using System;
+namespace multilevelinheritance
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Result r1 = new Result(58, "Radhika", 50, 70);
+            r1.display();
+        }
+    }
+}
+
+
+result.cs**
+using System;
+namespace multilevelinheritance
+{
+    class Result : Test
+    {
+        int total;
+        public Result(int roll_no, string name, int marks1, int marks2): base(roll_no, name, marks1, marks2)
+        {
+            total = getMarks1() + getMarks2();
+        }
+        public void display()
+        {
+            base.display();
+            Console.WriteLine("Total: " + total);
+        }
+    }
+}
+
+test.cs**
+using System;
+namespace multilevelinheritance
+{
+    class Test : student
+    {
+        int marks1, marks2;
+        public Test(int roll_no, string name, int marks1, int marks2)
+        : base(roll_no, name)
+        {
+            this.marks1 = marks1;
+            this.marks2 = marks2;
+        }
+        public int getMarks1()
+        {
+            return marks1;
+        }
+        public int getMarks2()
+        {
+            return marks2;
+        }
+        public void dispaly()
+        {
+            base.display();
+            Console.WriteLine("Marks1: " + marks1);
+            Console.WriteLine("Marks2: " + marks2);
+        }
+    }
+}
+
+
+student.cs**
+using System;
+namespace multilevelinheritance
+{
+    class student
+    {
+        int roll_no;
+        string name;
+        public student(int roll_no, string name)
+        {
+            this.roll_no = roll_no;
+            this.name = name;
+        }
+        public student() { }
+        public void display()
+        {
+            Console.WriteLine("Roll no: " + roll_no);
+            Console.WriteLine("Name: " + name);
+        }
+    }
+}
+
+
+-----------Constructor over
+
+program.cs**
+
+using System;
+namespace SalaryConstructure
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Salary s = new Salary();
+            s.getdata();
+            s.showdata();
+        }
+    }
+}
+
+
+salary.cs**
+using System;
+namespace SalaryConstructure
+{
+    class Salary
+    {
+        int basic, ta, da, hra;
+        public Salary()
+        {
+            da = 9000;
+            hra = 6000;
+        }
+        public void getdata()
+        {
+            Console.Write("Enter basic salary : ");
+            basic = int.Parse(Console.ReadLine());
+            Console.Write("Entertravelling allowance : ");
+            ta = int.Parse(Console.ReadLine());
+        }
+        public void showdata()
+        {
+            Console.WriteLine("Basic salary : " + basic);
+            Console.WriteLine("Dearness allowence : " + da);
+            Console.WriteLine("Housing rent allowence : " + hra);
+            Console.WriteLine("Travelling allowence : " + ta);
+            Console.WriteLine("Gross Salary : " + (basic + da + hra + ta));
+        }
+    }
+}
+
+
+
+---------delegates and events
+
+program.cs**
+using System;
+namespace TrafficDelegateExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TrafficSignal ts = new TrafficSignal();
+            ts.IdentifySignal();
+            ts.display();
+        }
+    }
+}
+
+Trafficsingal.cs**
+using System;
+namespace TrafficDelegateExample
+{
+    public delegate void TrafficDel();
+    class TrafficSignal
+    {
+        public static void Yellow()
+        {
+            Console.WriteLine("Yellow light signals to get ready");
+        }
+        public static void Green()
+        {
+            Console.WriteLine("Green light signals to go");
+        }
+        public static void Red()
+        {
+            Console.WriteLine("Red light signals to stop");
+        }
+        TrafficDel[] td = new TrafficDel[3];
+        public void IdentifySignal()
+        {
+            td[0] = new TrafficDel(Yellow);
+            td[1] = new TrafficDel(Green);
+            td[2] = new TrafficDel(Red);
+        }
+        public void display()
+        {
+            td[0]();
+            td[1]();
+            td[2]();
+        }
+    }
+}
+
